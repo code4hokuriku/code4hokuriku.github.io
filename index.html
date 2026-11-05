@@ -81,12 +81,17 @@
     .data-link { display: block; color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
     .data-link:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
     .link-arrow { display: inline-block; margin-top: 20px; color: var(--blue); font-size: 12px; font-weight: 800; }
+    .data-cards { grid-template-columns: repeat(2, 1fr); }
     .featured-data { grid-column: span 2; min-height: 285px; padding: 32px; color: var(--white); background: linear-gradient(125deg, #075b9d, #0b9ca6 72%, #44ad70) !important; }
     .featured-data .icon { color: var(--white); background: rgba(255,255,255,.18); }
     .featured-data .data-kicker { display: block; margin: -8px 0 8px; font-size: 10px; font-weight: 800; letter-spacing: .16em; opacity: .78; }
     .featured-data h3 { font-size: 22px; }
     .featured-data p { max-width: 500px; color: rgba(255,255,255,.84); }
     .featured-data .link-arrow { color: var(--white); }
+    .hokkeiren-data { grid-column: span 2; min-height: 210px; padding: 28px 32px; border-color: #c9dce8; background: linear-gradient(110deg, #eaf4f9, #f5f9f8) !important; }
+    .hokkeiren-data .icon { color: var(--ink); background: #d7e9f2; }
+    .hokkeiren-data .data-kicker { display: block; margin: -8px 0 8px; color: var(--blue); font-size: 10px; font-weight: 800; letter-spacing: .13em; }
+    .hokkeiren-data h3 { font-size: 20px; }
     .approach { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
     .approach-copy .eyebrow { margin-bottom: 16px; }
     .approach-copy p { color: var(--muted); font-size: 14px; }
@@ -100,6 +105,13 @@
     .area-band p { max-width: 520px; margin: 7px 0 0; color: rgba(255,255,255,.83); font-size: 13px; }
     .area-list { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; min-width: 260px; }
     .area-list span { padding: 7px 12px; border: 1px solid rgba(255,255,255,.42); border-radius: 999px; background: rgba(255,255,255,.12); font-size: 12px; font-weight: 700; }
+    .supporters { padding: 42px 0; background: #f0f6f4; }
+    .supporters-inner { display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+    .supporters h2 { margin: 0; font-size: 18px; }
+    .supporters p { margin: 5px 0 0; color: var(--muted); font-size: 12px; }
+    .supporter-link { display: inline-flex; align-items: center; gap: 12px; padding: 15px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); color: var(--ink); font-size: 14px; font-weight: 800; text-decoration: none; }
+    .supporter-link:hover { border-color: var(--teal); color: var(--blue); }
+    .supporter-link span { color: var(--blue); }
     .join { padding: 90px 0; text-align: center; }
     .join-box { padding: 54px 24px; border: 1px solid var(--line); border-radius: 26px; background: var(--white); box-shadow: var(--shadow); }
     .join-box .eyebrow { justify-content: center; }
@@ -122,11 +134,14 @@
       .floating-note { right: 0; bottom: -34px; }
       .section { padding: 68px 0; }
       .cards { grid-template-columns: 1fr; }
+      .data-cards { grid-template-columns: 1fr; }
       .featured-data { grid-column: auto; }
+      .hokkeiren-data { grid-column: auto; }
       .card { min-height: auto; }
       .approach { grid-template-columns: 1fr; gap: 24px; }
       .area-band { align-items: flex-start; flex-direction: column; padding: 27px; }
       .area-list { justify-content: flex-start; min-width: 0; }
+      .supporters-inner { align-items: flex-start; flex-direction: column; }
       .join { padding: 65px 0; }
       .join-box { padding: 40px 22px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -236,10 +251,11 @@
             <p>北陸の観光データを見つけ、地域の観光を考えるためのデータポータル。</p>
             <span class="link-arrow">TIFDATAを開く ↗</span>
           </a>
-          <a class="card data-link" href="https://hokurikudata.cloudfree.jp/" target="_blank" rel="noopener noreferrer">
+          <a class="card data-link hokkeiren-data" href="https://hokurikudata.cloudfree.jp/" target="_blank" rel="noopener noreferrer">
             <div class="icon" aria-hidden="true">⌕</div>
+            <span class="data-kicker">BY 北陸経済連合会</span>
             <h3>データでみる北陸</h3>
-            <p>北陸の経済・産業・地域をデータから知る</p>
+            <p>北陸の経済・産業・地域を、主要な統計データから知る</p>
             <span class="link-arrow">サイトを開く ↗</span>
           </a>
           <a class="card data-link" href="https://www.pref.niigata.lg.jp/sec/kankokikaku/1245960085415.html" target="_blank" rel="noopener noreferrer">
@@ -248,7 +264,35 @@
             <p>新潟県が公開する観光統計データ</p>
             <span class="link-arrow">統計ページを開く ↗</span>
           </a>
+          <a class="card data-link" href="https://sites.google.com/view/milli-ishikawa-pref/" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">◆</div>
+            <h3>石川県の観光オープンデータ</h3>
+            <p>milli Ishikawa Pref.</p>
+            <span class="link-arrow">ポータルを開く ↗</span>
+          </a>
+          <a class="card data-link" href="https://www.fuku-e.com/FTAS" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">⌂</div>
+            <h3>福井県の観光オープンデータ</h3>
+            <p>FTAS</p>
+            <span class="link-arrow">ポータルを開く ↗</span>
+          </a>
+          <a class="card data-link" href="https://www.info-toyama.com/stories/toyama_tourismdata" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">▥</div>
+            <h3>富山県の観光オープンデータ</h3>
+            <p>富山県観光データ</p>
+            <span class="link-arrow">ポータルを開く ↗</span>
+          </a>
         </div>
+      </div>
+    </section>
+
+    <section class="supporters" aria-labelledby="supporters-title">
+      <div class="wrap supporters-inner">
+        <div>
+          <h2 id="supporters-title">応援団体</h2>
+          <p>Code for HOKURIKUの活動を応援いただいています。</p>
+        </div>
+        <a class="supporter-link" href="https://www.soumu.go.jp/soutsu/hokuriku/" target="_blank" rel="noopener noreferrer">北陸総合通信局 <span>↗</span></a>
       </div>
     </section>
 
