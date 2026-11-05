@@ -1,1 +1,269 @@
-Code for HOKURIKU
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7faf8">
+  <meta name="description" content="Code for HOKURIKUは、新潟・富山・石川・福井をつなぎ、オープンデータとテクノロジーで地域の課題解決に取り組むシビックテックのコミュニティです。">
+  <title>Code for HOKURIKU — データとアイデアで、地域をつなぐ</title>
+  <style>
+    :root {
+      --ink: #153b5d;
+      --muted: #607486;
+      --blue: #0875bd;
+      --teal: #0aa69c;
+      --green: #49ae65;
+      --paper: #f7faf8;
+      --line: #dce8e5;
+      --white: #fff;
+      --shadow: 0 18px 55px rgba(18, 63, 88, .09);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: var(--paper);
+      font-family: "Noto Sans JP", "Hiragino Kaku Gothic ProN", "Yu Gothic", Meiryo, sans-serif;
+      line-height: 1.8;
+      letter-spacing: .025em;
+    }
+    a { color: inherit; }
+    .wrap { width: min(1120px, calc(100% - 48px)); margin-inline: auto; }
+    .topbar { position: relative; z-index: 2; }
+    .nav {
+      min-height: 86px; display: flex; align-items: center; justify-content: space-between; gap: 24px;
+    }
+    .brand { display: inline-flex; align-items: center; gap: 12px; text-decoration: none; }
+    .brand img { width: 52px; height: 52px; object-fit: contain; border-radius: 14px; }
+    .brand span { font-size: 15px; font-weight: 800; letter-spacing: .08em; }
+    .navlinks { display: flex; align-items: center; gap: 30px; font-size: 13px; font-weight: 700; }
+    .navlinks a { text-decoration: none; color: #4d6577; }
+    .navlinks a:hover { color: var(--blue); }
+    .navlinks .nav-cta { padding: 10px 18px; border-radius: 999px; color: var(--white); background: var(--ink); }
+    .hero { position: relative; padding: 50px 0 100px; overflow: hidden; }
+    .hero::before, .hero::after { content: ""; position: absolute; z-index: -1; border-radius: 50%; filter: blur(1px); }
+    .hero::before { width: 560px; height: 560px; right: -220px; top: -185px; background: radial-gradient(circle, rgba(76, 186, 112, .14), transparent 68%); }
+    .hero::after { width: 500px; height: 500px; left: -300px; bottom: -260px; background: radial-gradient(circle, rgba(4, 151, 196, .12), transparent 70%); }
+    .hero-grid { display: grid; grid-template-columns: 1.05fr .95fr; gap: 50px; align-items: center; }
+    .eyebrow { display: inline-flex; align-items: center; gap: 10px; margin: 0 0 20px; color: var(--teal); font-size: 12px; font-weight: 800; letter-spacing: .17em; text-transform: uppercase; }
+    .eyebrow::before { content: ""; width: 28px; height: 2px; background: currentColor; }
+    h1 { margin: 0; font-size: clamp(36px, 5vw, 62px); line-height: 1.32; letter-spacing: .015em; }
+    h1 em { color: var(--blue); font-style: normal; }
+    .hero-copy { max-width: 530px; margin: 24px 0 30px; color: var(--muted); font-size: 16px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .button { display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 0 21px; border: 1px solid var(--ink); border-radius: 999px; text-decoration: none; font-size: 13px; font-weight: 800; transition: transform .2s, box-shadow .2s; }
+    .button:hover { transform: translateY(-2px); box-shadow: 0 9px 20px rgba(21, 59, 93, .12); }
+    .button.primary { color: var(--white); background: var(--ink); }
+    .button.secondary { background: rgba(255,255,255,.55); }
+    .arrow { font-size: 18px; line-height: 1; }
+    .hero-art { position: relative; padding: 20px; }
+    .logo-card { position: relative; padding: 24px; border: 1px solid rgba(255,255,255,.9); border-radius: 28px; background: rgba(255,255,255,.72); box-shadow: var(--shadow); transform: rotate(1.5deg); }
+    .logo-card img { display: block; width: 100%; height: auto; border-radius: 14px; }
+    .floating-note { position: absolute; right: -6px; bottom: -30px; padding: 13px 18px; border: 1px solid var(--line); border-radius: 16px; background: var(--white); box-shadow: var(--shadow); font-size: 12px; font-weight: 800; }
+    .floating-note strong { display: block; color: var(--green); font-size: 17px; }
+    .regions { display: flex; align-items: center; gap: 10px; flex-wrap: wrap; margin-top: 27px; color: #687e8c; font-size: 12px; font-weight: 700; }
+    .regions span { padding: 5px 11px; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.65); }
+    .section { padding: 92px 0; }
+    .section.white { background: var(--white); }
+    .section-head { max-width: 640px; margin: 0 auto 44px; text-align: center; }
+    .section-head .eyebrow { justify-content: center; }
+    h2 { margin: 0; font-size: clamp(27px, 3vw, 38px); line-height: 1.45; }
+    .section-head p { margin: 14px 0 0; color: var(--muted); font-size: 14px; }
+    .cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 18px; }
+    .card { min-height: 245px; padding: 28px; border: 1px solid var(--line); border-radius: 20px; background: var(--white); }
+    .white .card { background: var(--paper); }
+    .icon { display: grid; place-items: center; width: 52px; height: 52px; margin-bottom: 21px; border-radius: 16px; color: var(--blue); background: #e8f5fb; font-size: 23px; }
+    .card:nth-child(2) .icon { color: var(--teal); background: #e5f7f3; }
+    .card:nth-child(3) .icon { color: #398d55; background: #eaf6eb; }
+    .card h3 { margin: 0 0 9px; font-size: 17px; }
+    .card p { margin: 0; color: var(--muted); font-size: 13px; }
+    .data-link { display: block; color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .data-link:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .link-arrow { display: inline-block; margin-top: 20px; color: var(--blue); font-size: 12px; font-weight: 800; }
+    .featured-data { grid-column: span 2; min-height: 285px; padding: 32px; color: var(--white); background: linear-gradient(125deg, #075b9d, #0b9ca6 72%, #44ad70) !important; }
+    .featured-data .icon { color: var(--white); background: rgba(255,255,255,.18); }
+    .featured-data .data-kicker { display: block; margin: -8px 0 8px; font-size: 10px; font-weight: 800; letter-spacing: .16em; opacity: .78; }
+    .featured-data h3 { font-size: 22px; }
+    .featured-data p { max-width: 500px; color: rgba(255,255,255,.84); }
+    .featured-data .link-arrow { color: var(--white); }
+    .approach { display: grid; grid-template-columns: .9fr 1.1fr; gap: 70px; align-items: center; }
+    .approach-copy .eyebrow { margin-bottom: 16px; }
+    .approach-copy p { color: var(--muted); font-size: 14px; }
+    .steps { display: grid; gap: 12px; }
+    .step { display: grid; grid-template-columns: 52px 1fr; gap: 17px; align-items: start; padding: 19px 21px; border: 1px solid var(--line); border-radius: 17px; background: var(--white); }
+    .step-num { color: var(--teal); font-size: 13px; font-weight: 900; letter-spacing: .08em; }
+    .step h3 { margin: 0 0 3px; font-size: 15px; }
+    .step p { margin: 0; color: var(--muted); font-size: 12px; }
+    .area-band { display: flex; align-items: center; justify-content: space-between; gap: 30px; padding: 32px 36px; border-radius: 22px; color: var(--white); background: linear-gradient(115deg, #0875bd, #0aa69c 65%, #49ae65); }
+    .area-band h2 { font-size: 24px; }
+    .area-band p { max-width: 520px; margin: 7px 0 0; color: rgba(255,255,255,.83); font-size: 13px; }
+    .area-list { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; min-width: 260px; }
+    .area-list span { padding: 7px 12px; border: 1px solid rgba(255,255,255,.42); border-radius: 999px; background: rgba(255,255,255,.12); font-size: 12px; font-weight: 700; }
+    .join { padding: 90px 0; text-align: center; }
+    .join-box { padding: 54px 24px; border: 1px solid var(--line); border-radius: 26px; background: var(--white); box-shadow: var(--shadow); }
+    .join-box .eyebrow { justify-content: center; }
+    .join-box p { max-width: 590px; margin: 14px auto 25px; color: var(--muted); font-size: 14px; }
+    footer { padding: 25px 0; border-top: 1px solid var(--line); color: #718493; font-size: 11px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; gap: 15px; }
+    .footer-brand { color: var(--ink); font-weight: 900; letter-spacing: .08em; }
+    @media (max-width: 760px) {
+      .wrap { width: min(100% - 36px, 560px); }
+      .nav { min-height: 72px; }
+      .brand img { width: 43px; height: 43px; }
+      .navlinks { gap: 15px; }
+      .navlinks a:not(.nav-cta) { display: none; }
+      .navlinks .nav-cta { padding: 8px 14px; }
+      .hero { padding: 36px 0 70px; }
+      .hero-grid { grid-template-columns: 1fr; gap: 35px; }
+      .hero-copy { font-size: 14px; }
+      .hero-art { width: min(100%, 480px); margin-inline: auto; padding: 10px; }
+      .logo-card { padding: 16px; }
+      .floating-note { right: 0; bottom: -34px; }
+      .section { padding: 68px 0; }
+      .cards { grid-template-columns: 1fr; }
+      .featured-data { grid-column: auto; }
+      .card { min-height: auto; }
+      .approach { grid-template-columns: 1fr; gap: 24px; }
+      .area-band { align-items: flex-start; flex-direction: column; padding: 27px; }
+      .area-list { justify-content: flex-start; min-width: 0; }
+      .join { padding: 65px 0; }
+      .join-box { padding: 40px 22px; }
+      .footer-inner { flex-direction: column; align-items: flex-start; }
+    }
+    @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } *, *::before, *::after { transition-duration: .01ms !important; } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#top" aria-label="Code for HOKURIKU トップ">
+        <img src="code4hokuriku-icon.jpg" alt="">
+        <span>CODE FOR HOKURIKU</span>
+      </a>
+      <nav class="navlinks" aria-label="メインナビゲーション">
+        <a href="#about">私たちについて</a>
+        <a href="#activities">活動</a>
+        <a href="#data-links">データリンク</a>
+        <a class="nav-cta" href="https://github.com/code4hokuriku/code4hokuriku.github.io/issues">参加する <span class="arrow">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="top">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <p class="eyebrow">Civic Tech in Hokuriku</p>
+          <h1>データとアイデアで<br><em>北陸をつなぐ。</em></h1>
+          <p class="hero-copy">Code for HOKURIKUは、オープンデータとテクノロジーを活用し、地域の課題をみんなで考え、形にしていくシビックテックのコミュニティです。</p>
+          <div class="actions">
+            <a class="button primary" href="#about">私たちについて <span class="arrow">↓</span></a>
+            <a class="button secondary" href="https://github.com/code4hokuriku/code4hokuriku.github.io/issues">一緒に取り組む <span class="arrow">↗</span></a>
+          </div>
+          <div class="regions" aria-label="活動地域"><span>新潟</span><span>富山</span><span>石川</span><span>福井</span></div>
+        </div>
+        <div class="hero-art">
+          <div class="logo-card"><img src="code4hokuriku.png" alt="Code for HOKURIKU ロゴ"></div>
+          <div class="floating-note"><strong>Open Data × People</strong>地域の知恵をつなぐ</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white" id="about">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">About us</p>
+          <h2>地域の「こうなったらいいな」を、<br>みんなの力で。</h2>
+          <p>行政、企業、技術者、市民。それぞれの視点を持ち寄り、地域に根ざした小さな一歩をつくります。</p>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="icon" aria-hidden="true">⌘</div>
+            <h3>オープンデータを活かす</h3>
+            <p>公開されたデータを見つけ、読み解き、暮らしや地域活動に役立つ形へつなげます。</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">◎</div>
+            <h3>立場を越えてつながる</h3>
+            <p>地域で活動する人と、技術やアイデアを持つ人が出会い、一緒に考える場をつくります。</p>
+          </article>
+          <article class="card">
+            <div class="icon" aria-hidden="true">↗</div>
+            <h3>小さく試して共有する</h3>
+            <p>完璧を待たずに試作品や活動をつくり、学びや成果を地域にひらいていきます。</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="activities">
+      <div class="wrap approach">
+        <div class="approach-copy">
+          <p class="eyebrow">How we work</p>
+          <h2>課題を見つけ、<br>一緒に動かす。</h2>
+          <p>地域の声を起点に、データと技術を道具として使います。専門家だけでなく、関心のある人なら誰でも参加できます。</p>
+        </div>
+        <div class="steps">
+          <article class="step"><div class="step-num">01 / LISTEN</div><div><h3>地域の声を聞く</h3><p>日々の困りごとや、地域で実現したいことを持ち寄ります。</p></div></article>
+          <article class="step"><div class="step-num">02 / MAKE</div><div><h3>データとアイデアで試す</h3><p>オープンデータや身近な技術を使って、解決の糸口を形にします。</p></div></article>
+          <article class="step"><div class="step-num">03 / SHARE</div><div><h3>学びを地域にひらく</h3><p>試したことを共有し、次の人や活動へつなげます。</p></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section white">
+      <div class="wrap">
+        <div class="area-band">
+          <div><h2>北陸のまちを、ゆるやかにつなぐ。</h2><p>それぞれの地域の個性を大切にしながら、知見やアイデアを持ち寄れるネットワークを目指しています。</p></div>
+          <div class="area-list" aria-label="対象地域"><span>新潟県</span><span>富山県</span><span>石川県</span><span>福井県</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="data-links">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Open Data</p>
+          <h2>北陸オープンデータリンク集</h2>
+          <p>北陸各県のオープンデータや、地域データを探せるサイトをまとめました。</p>
+        </div>
+        <div class="cards data-cards">
+          <a class="card data-link featured-data" href="https://tifdata.jp/" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">▥</div>
+            <span class="data-kicker">HOKURIKU TOURISM DATA</span>
+            <h3>TIFDATA 北陸観光データポータル</h3>
+            <p>北陸の観光データを見つけ、地域の観光を考えるためのデータポータル。</p>
+            <span class="link-arrow">TIFDATAを開く ↗</span>
+          </a>
+          <a class="card data-link" href="https://hokurikudata.cloudfree.jp/" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">⌕</div>
+            <h3>データでみる北陸</h3>
+            <p>北陸の経済・産業・地域をデータから知る</p>
+            <span class="link-arrow">サイトを開く ↗</span>
+          </a>
+          <a class="card data-link" href="https://www.pref.niigata.lg.jp/sec/kankokikaku/1245960085415.html" target="_blank" rel="noopener noreferrer">
+            <div class="icon" aria-hidden="true">⌖</div>
+            <h3>新潟県の観光統計</h3>
+            <p>新潟県が公開する観光統計データ</p>
+            <span class="link-arrow">統計ページを開く ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="join" id="join">
+      <div class="wrap join-box">
+        <p class="eyebrow">Join us</p>
+        <h2>できることから、一緒に。</h2>
+        <p>プログラミングの経験がなくても大丈夫。地域のことを知っている、データに関心がある、何か手伝ってみたい。その気持ちが参加の入り口です。</p>
+        <a class="button primary" href="https://github.com/code4hokuriku/code4hokuriku.github.io/issues">GitHub Issuesで参加・相談する <span class="arrow">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner"><span class="footer-brand">CODE FOR HOKURIKU</span><span>オープンデータで、地域の可能性をひらく。</span><span>© Code for HOKURIKU</span></div>
+  </footer>
+</body>
+</html>
