@@ -112,6 +112,14 @@
     .supporter-link { display: inline-flex; align-items: center; gap: 12px; padding: 15px 20px; border: 1px solid var(--line); border-radius: 14px; background: var(--white); color: var(--ink); font-size: 14px; font-weight: 800; text-decoration: none; }
     .supporter-link:hover { border-color: var(--teal); color: var(--blue); }
     .supporter-link span { color: var(--blue); }
+    .apps { padding: 76px 0; background: var(--white); }
+    .app-card { display: flex; align-items: center; justify-content: space-between; gap: 28px; padding: 30px 34px; border: 1px solid #cfe4e8; border-radius: 22px; background: linear-gradient(115deg, #edf8f8, #f3f8fc); color: inherit; text-decoration: none; transition: transform .2s, box-shadow .2s; }
+    .app-list { display: grid; gap: 14px; }
+    .app-card:hover { transform: translateY(-3px); box-shadow: var(--shadow); }
+    .app-card .eyebrow { margin-bottom: 8px; }
+    .app-card h3 { margin: 0; font-size: 22px; }
+    .app-card p { margin: 7px 0 0; color: var(--muted); font-size: 13px; }
+    .app-open { flex: 0 0 auto; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 50%; color: var(--white); background: var(--ink); font-size: 21px; }
     .join { padding: 90px 0; text-align: center; }
     .join-box { padding: 54px 24px; border: 1px solid var(--line); border-radius: 26px; background: var(--white); box-shadow: var(--shadow); }
     .join-box .eyebrow { justify-content: center; }
@@ -142,6 +150,8 @@
       .area-band { align-items: flex-start; flex-direction: column; padding: 27px; }
       .area-list { justify-content: flex-start; min-width: 0; }
       .supporters-inner { align-items: flex-start; flex-direction: column; }
+      .app-card { align-items: flex-start; padding: 25px; }
+      .app-card h3 { font-size: 19px; }
       .join { padding: 65px 0; }
       .join-box { padding: 40px 22px; }
       .footer-inner { flex-direction: column; align-items: flex-start; }
@@ -281,6 +291,34 @@
             <h3>富山県の観光オープンデータ</h3>
             <p>富山県観光データ</p>
             <span class="link-arrow">ポータルを開く ↗</span>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="apps" aria-labelledby="apps-title">
+      <div class="wrap">
+        <div class="section-head">
+          <p class="eyebrow">Applications</p>
+          <h2 id="apps-title">アプリケーション紹介</h2>
+          <p>オープンデータを活用した、地域を知るためのアプリケーションです。</p>
+        </div>
+        <div class="app-list">
+          <a class="app-card" href="https://code4fukui.github.io/hokuriku-kanko-dashboard/" target="_blank" rel="noopener noreferrer">
+            <div>
+              <p class="eyebrow">Tourism Data</p>
+              <h3>北陸観光ダッシュボード</h3>
+              <p>北陸の観光データを見やすく確認できるダッシュボード</p>
+            </div>
+            <span class="app-open" aria-hidden="true">↗</span>
+          </a>
+          <a class="app-card" href="https://tifdata.jp/pickup/202507121-2/" target="_blank" rel="noopener noreferrer">
+            <div>
+              <p class="eyebrow">Data Insight · TIFDATA</p>
+              <h3>石川県と福井県の観光施設を比較──満足度・NPS・消費額の相関を可視化</h3>
+              <p>観光施設の満足度・推奨度・消費額を比較したデータ分析</p>
+            </div>
+            <span class="app-open" aria-hidden="true">↗</span>
           </a>
         </div>
       </div>
